@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<style name="Title" fontName="Times New Roman" fontSize="50" isBold="true" pdfFontName="Times-Bold"/>
+	<style name="SubTitle" forecolor="#736343" fontName="Arial" fontSize="18"/>
+	<style name="Column header" forecolor="#666666" fontName="Arial" fontSize="12" isBold="true"/>
+	<style name="Detail" fontName="Arial" fontSize="12"/>
+	<style name="Row" mode="Transparent">
+		<conditionalStyle>
+			<conditionExpression><![CDATA[$V{REPORT_COUNT}%2 == 0]]></conditionExpression>
+			<style backcolor="#E6DAC3"/>
+		</conditionalStyle>
+	</style>
+	<queryString language="SQL">
+		<![CDATA[SELECT
+     hoadon.`MaHoaDon` AS hoadon_MaHoaDon,
+     hoadon.`MaKhachHang` AS hoadon_MaKhachHang,
+     hoadon.`MaNhanVien` AS hoadon_MaNhanVien,
+     hoadon.`ThueVAT` AS hoadon_ThueVAT,
+     hoadon.`GiamGia` AS hoadon_GiamGia,
+     hoadon.`ThoiGianBan` AS hoadon_ThoiGianBan,
+     chitiethoadon.`MaHoaDon` AS chitiethoadon_MaHoaDon,
+     chitiethoadon.`MaSanPham` AS chitiethoadon_MaSanPham,
+     chitiethoadon.`GiaBan` AS chitiethoadon_GiaBan,
+     chitiethoadon.`SoLuong` AS chitiethoadon_SoLuong,
+     khachhang.`MaKhachHang` AS khachhang_MaKhachHang,
+     khachhang.`TenKhachHang` AS khachhang_TenKhachHang,
+     khachhang.`SDT` AS khachhang_SDT,
+     khachhang.`DiaChi` AS khachhang_DiaChi,
+     khachhang.`Email` AS khachhang_Email,
+     khachhang.`Diem` AS khachhang_Diem,
+     sanpham.`MaSanPham` AS sanpham_MaSanPham,
+     sanpham.`TenSanPham` AS sanpham_TenSanPham,
+     sanpham.`Loai` AS sanpham_Loai,
+     sanpham.`LuongTonKho` AS sanpham_LuongTonKho,
+     sanpham.`GiaBan` AS sanpham_GiaBan,
+     sanpham.`GiaNhap` AS sanpham_GiaNhap,
+     sanpham.`MaNhaCungCap` AS sanpham_MaNhaCungCap,
+     sanpham.`ThoiGianNhap` AS sanpham_ThoiGianNhap
+FROM
+     `hoadon` hoadon INNER JOIN `chitiethoadon` chitiethoadon ON hoadon.`MaHoaDon` = chitiethoadon.`MaHoaDon`
+     INNER JOIN `khachhang` khachhang ON hoadon.`MaKhachHang` = khachhang.`MaKhachHang`
+     INNER JOIN `sanpham` sanpham ON chitiethoadon.`MaSanPham` = sanpham.`MaSanPham`]]>
+	</queryString>
+	<field name="hoadon_MaHoaDon" class="java.lang.Integer"/>
+	<field name="hoadon_MaKhachHang" class="java.lang.Integer"/>
+	<field name="hoadon_MaNhanVien" class="java.lang.Integer"/>
+	<field name="hoadon_ThueVAT" class="java.lang.Integer"/>
+	<field name="hoadon_GiamGia" class="java.lang.Integer"/>
+	<field name="hoadon_ThoiGianBan" class="java.sql.Date"/>
+	<field name="chitiethoadon_MaHoaDon" class="java.lang.Integer"/>
+	<field name="chitiethoadon_MaSanPham" class="java.lang.Integer"/>
+	<field name="chitiethoadon_GiaBan" class="java.lang.Integer"/>
+	<field name="chitiethoadon_SoLuong" class="java.lang.Integer"/>
+	<field name="khachhang_MaKhachHang" class="java.lang.Integer"/>
+	<field name="khachhang_TenKhachHang" class="java.lang.String"/>
+	<field name="khachhang_SDT" class="java.lang.Long"/>
+	<field name="khachhang_DiaChi" class="java.lang.String"/>
+	<field name="khachhang_Email" class="java.lang.String"/>
+	<field name="khachhang_Diem" class="java.lang.Integer"/>
+	<field name="sanpham_MaSanPham" class="java.lang.Integer"/>
+	<field name="sanpham_TenSanPham" class="java.lang.String"/>
+	<field name="sanpham_Loai" class="java.lang.String"/>
+	<field name="sanpham_LuongTonKho" class="java.lang.Integer"/>
+	<field name="sanpham_GiaBan" class="java.lang.Integer"/>
+	<field name="sanpham_GiaNhap" class="java.lang.Integer"/>
+	<field name="sanpham_MaNhaCungCap" class="java.lang.Integer"/>
+	<field name="sanpham_ThoiGianNhap" class="java.sql.Date"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="136" splitType="Stretch">
+			<image>
+				<reportElement x="0" y="0" width="164" height="126"/>
+				<imageExpression><![CDATA["coffee.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement style="Title" x="170" y="0" width="263" height="62"/>
+				<textElement verticalAlignment="Middle">
+					<font pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Coffee Title]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="SubTitle" x="219" y="62" width="196" height="22"/>
+				<textElement>
+					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
+				</textElement>
+				<text><![CDATA[Coffee SubTitle]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="172" y="94" width="383" height="42"/>
+				<textElement textAlignment="Right">
+					<font size="10"/>
+				</textElement>
+				<text><![CDATA[Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce auctor purus gravida arcu aliquam mattis. Donec et nulla libero, ut varius massa. Nulla sed turpis elit. Etiam aliquet mauris a ligula hendrerit in auctor leo lobortis.]]></text>
+			</staticText>
+			<image>
+				<reportElement x="433" y="-115" width="267" height="209"/>
+				<imageExpression><![CDATA["coffee_stain.png"]]></imageExpression>
+			</image>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="16" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="15" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement style="Column header" x="0" y="0" width="23" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[hoadon_MaHoaDon]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="23" y="0" width="23" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[hoadon_MaKhachHang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="46" y="0" width="23" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[hoadon_MaNhanVien]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="69" y="0" width="23" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[hoadon_ThueVAT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="92" y="0" width="23" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[hoadon_GiamGia]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="115" y="0" width="23" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[hoadon_ThoiGianBan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="138" y="0" width="23" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[chitiethoadon_MaHoaDon]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="161" y="0" width="23" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[chitiethoadon_MaSanPham]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="184" y="0" width="23" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[chitiethoadon_GiaBan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="207" y="0" width="23" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[chitiethoadon_SoLuong]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="230" y="0" width="23" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[khachhang_MaKhachHang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="253" y="0" width="23" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[khachhang_TenKhachHang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="276" y="0" width="23" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[khachhang_SDT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="299" y="0" width="23" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[khachhang_DiaChi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="322" y="0" width="23" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[khachhang_Email]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="345" y="0" width="23" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[khachhang_Diem]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="368" y="0" width="23" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[sanpham_MaSanPham]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="391" y="0" width="23" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[sanpham_TenSanPham]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="414" y="0" width="23" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[sanpham_Loai]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="437" y="0" width="23" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[sanpham_LuongTonKho]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="460" y="0" width="23" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[sanpham_GiaBan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="483" y="0" width="23" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[sanpham_GiaNhap]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="506" y="0" width="23" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[sanpham_MaNhaCungCap]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="Column header" x="529" y="0" width="23" height="15" forecolor="#736343"/>
+				<textElement/>
+				<text><![CDATA[sanpham_ThoiGianNhap]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<frame>
+				<reportElement style="Row" mode="Opaque" x="0" y="0" width="555" height="15"/>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="0" y="0" width="23" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{hoadon_MaHoaDon}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="23" y="0" width="23" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{hoadon_MaKhachHang}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="46" y="0" width="23" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{hoadon_MaNhanVien}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="69" y="0" width="23" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{hoadon_ThueVAT}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="92" y="0" width="23" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{hoadon_GiamGia}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="115" y="0" width="23" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{hoadon_ThoiGianBan}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="138" y="0" width="23" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{chitiethoadon_MaHoaDon}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="161" y="0" width="23" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{chitiethoadon_MaSanPham}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="184" y="0" width="23" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{chitiethoadon_GiaBan}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="207" y="0" width="23" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{chitiethoadon_SoLuong}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="230" y="0" width="23" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{khachhang_MaKhachHang}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="253" y="0" width="23" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{khachhang_TenKhachHang}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="276" y="0" width="23" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{khachhang_SDT}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="299" y="0" width="23" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{khachhang_DiaChi}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="322" y="0" width="23" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{khachhang_Email}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="345" y="0" width="23" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{khachhang_Diem}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="368" y="0" width="23" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{sanpham_MaSanPham}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="391" y="0" width="23" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{sanpham_TenSanPham}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="414" y="0" width="23" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{sanpham_Loai}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="437" y="0" width="23" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{sanpham_LuongTonKho}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="460" y="0" width="23" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{sanpham_GiaBan}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="483" y="0" width="23" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{sanpham_GiaNhap}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="506" y="0" width="23" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{sanpham_MaNhaCungCap}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement style="Detail" x="529" y="0" width="23" height="15"/>
+					<textElement/>
+					<textFieldExpression><![CDATA[$F{sanpham_ThoiGianNhap}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<line>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="3" width="555" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineColor="#999999"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="25" splitType="Stretch">
+			<frame>
+				<reportElement mode="Opaque" x="-21" y="1" width="597" height="24" forecolor="#D0B48E" backcolor="#F2EBDF"/>
+				<textField evaluationTime="Report">
+					<reportElement style="Column header" x="533" y="0" width="40" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement style="Column header" x="453" y="0" width="80" height="20" forecolor="#736343"/>
+					<textElement textAlignment="Right" verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+				</textField>
+				<textField pattern="EEEEE dd MMMMM yyyy">
+					<reportElement style="Column header" x="22" y="1" width="197" height="20" forecolor="#736343"/>
+					<textElement verticalAlignment="Middle">
+						<font size="10" isBold="false"/>
+					</textElement>
+					<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</pageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+</jasperReport>
